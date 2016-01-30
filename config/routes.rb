@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get 'help' => 'static_pages#help'
   get 'menu' => 'static_pages#menu'
   get 'signup'  => 'users#new'
+  resources :users
 end
