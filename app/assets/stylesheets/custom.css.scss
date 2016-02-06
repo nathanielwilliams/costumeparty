@@ -54,6 +54,16 @@ h2 {
   color: $gray-light;
 }
 
+h3{
+  font-size: 3em;
+  letter-spacing: -2px;
+}
+
+h4{
+  font-size: 2em;
+  letter-spacing: -2px;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -131,8 +141,45 @@ input {
   }
 }
 
+.errorimagecon{
+	padding: 0 0 0 165px; /* 75px being the width of the thumbnail + how much space you want to put between it and your text */
+	position: relative; /* So the thumbnail is relative to this */
+  min-height: 200px;
+}
+
+	.errorimagecon img {
+		left: 0;
+		position: absolute;
+		top: 0;
+	}
+
+  .checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+/* flash */
+.flashimg{
+  float:left;
+    border: 0px;
+    margin: 0px 15px 0px 0px;
+}
+
 /* bootstrap overides */
 .jumbotron{
   background-color: #FAE3E4;
 
+}
+
+.alert{
+  overflow:auto;
 }

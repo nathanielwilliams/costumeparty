@@ -2,11 +2,11 @@
 <div class="bgbelt">
   <h1>RING READY AND BELT HUNGRY?</h1>
   <h2>{sign up here}</h2>
-
+<%= render 'shared/error_messages' %>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
+
 
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>

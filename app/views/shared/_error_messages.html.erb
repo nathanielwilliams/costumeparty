@@ -1,12 +1,16 @@
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      The form contains <%= pluralize(@user.errors.count, "error") %>.
+      <div class="errorimagecon">
+          <%= image_tag("pythonpoint.jpg", alt: "Python Patrol", class: "flashimg") %>
+          <h3><%= pluralize(@user.errors.count, "error") %>. Unacceptable, brother!</h3>
+          <h4>Quit messing around, or these pythons will run wild on you!</h4>
+          <% count = 0 %>
+          <% @user.errors.full_messages.each do |msg| %>
+            <% count+=1 %>
+            <%= count %>. <%= msg %><br/>
+          <% end %>
+      </div>
     </div>
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
   </div>
 <% end %>
