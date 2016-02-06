@@ -1,16 +1,17 @@
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      <div class="errorimagecon">
-          <%= image_tag("pythonpoint.jpg", alt: "Python Patrol", class: "flashimg") %>
-          <h3><%= pluralize(@user.errors.count, "error") %>. Unacceptable, brother!</h3>
-          <h4>Quit messing around, or these pythons will run wild on you!</h4>
+          <!--<%= image_tag("pythonpoint.jpg", alt: "Python Patrol", class: "flashimg") %>
+          <h3><%= pluralize(@user.errors.count, "error") %>. Unacceptable, brother!</h3>-->
+          <h3>Looks like someone wants to meet the pythons!</h3>
+          <br />
+          <h4>Quit messin' around and fix this mess, brother:</h4>
+          <br />
           <% count = 0 %>
           <% @user.errors.full_messages.each do |msg| %>
             <% count+=1 %>
             <%= count %>. <%= msg %><br/>
           <% end %>
-      </div>
     </div>
   </div>
 <% end %>

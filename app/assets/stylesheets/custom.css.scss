@@ -57,11 +57,15 @@ h2 {
 h3{
   font-size: 3em;
   letter-spacing: -2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 h4{
   font-size: 2em;
   letter-spacing: -2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 p {
@@ -182,4 +186,13 @@ input {
 
 .alert{
   overflow:auto;
+}
+
+.alert-danger{
+    background-color: #f2dede;
+    background-image: asset-data-url("pythonpoint.jpg");
+    background-position: 20px 20px;
+    background-repeat: no-repeat;
+    min-height: 245px;
+    padding-left: 180px;
 }
