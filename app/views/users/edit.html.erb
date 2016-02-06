@@ -1,0 +1,31 @@
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
+<%= render 'shared/error_messages' %>
+<div class="row">
+  <aside class="col-md-3" style="text-align:center">
+    <section class="user_info">
+    <%= image_tag("default_avatar.png", alt: "No Wrestler selected") %>
+    <br />
+    <div style="text-align:center">
+      NO WRESTLER SELECTED
+    </div>
+  </section>
+  </aside>
+  <div class="col-md-6">
+    <%= form_for(@user) do |f| %>
+            <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

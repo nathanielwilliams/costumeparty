@@ -2,3 +2,26 @@ hulk:
   name: Hulk Hogan
   email: hulkster@hulkamaniacs.com
   password_digest: <%= User.digest('password') %>
+  admin: true
+
+randy:
+  name: Randy Savage
+  email: randy@machoman.com
+  password_digest: <%= User.digest('password') %>
+
+lana:
+  name: The Undertaker
+  email: thetaker@paulbearer.com
+  password_digest: <%= User.digest('password') %>
+
+malory:
+  name: Andre the Giant
+  email: andre@embiggens.com
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
