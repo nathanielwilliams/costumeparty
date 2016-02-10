@@ -19,6 +19,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      #Autopost that they signed up
+      @autopostcontent = @user.name + " has entered the ring! #ROYALRUMBLE #JINNYXXXI"
+      Micropost.create(:user_id => @user.id, :content => @autopostcontent)
+      #login, set flash, show their profile page
       log_in @user
       flashmsg = "<h3>Your Profile has been Created!</h3><br />"
       flashmsg += "<h4>To all my little Hulkamaniacs,<br/>say your prayers,<br/>take your vitamins,<br/>and you just might survive sharing the ring with me.</h4>"

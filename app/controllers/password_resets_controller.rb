@@ -11,6 +11,9 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
+      #Autopost that they signed up
+      @autopostcontent = "Jabroni Alert! I (" + @user.name + ") forgot my password and had to ask the #HULKSTER to reset it! #JABRONI #JINNYXXXI"
+      Micropost.create(:user_id => @user.id, :content => @autopostcontent)
       flash[:success] = "<h3>Sent you an email with instructions, brother!</h3>"
       redirect_to root_url
     else
