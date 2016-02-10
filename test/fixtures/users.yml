@@ -9,12 +9,12 @@ randy:
   email: randy@machoman.com
   password_digest: <%= User.digest('password') %>
 
-lana:
+undertaker:
   name: The Undertaker
   email: thetaker@paulbearer.com
   password_digest: <%= User.digest('password') %>
 
-malory:
+andre:
   name: Andre the Giant
   email: andre@embiggens.com
   password_digest: <%= User.digest('password') %>

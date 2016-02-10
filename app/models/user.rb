@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :reset_token
   before_save   :downcase_email
   validates :name,  presence: true, length: { maximum: 50 }
@@ -42,8 +43,7 @@ class User < ActiveRecord::Base
   # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
-    update_attribute(:reset_digest,  User.digest(reset_token))
-    update_attribute(:reset_sent_at, Time.zone.now)
+    update_columns(reset_digest:  User.digest(reset_token), reset_sent_at: Time.zone.now)
   end
 
   # Sends password reset email.
@@ -54,6 +54,11 @@ class User < ActiveRecord::Base
   # Returns true if a password reset has expired.
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  def feed
+    #feed is all user activity
+    Micropost.all
   end
 
   private
