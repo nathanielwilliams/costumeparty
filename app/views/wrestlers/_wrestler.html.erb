@@ -11,7 +11,7 @@
 
 
                   <%if wrestler.user.nil?%>
-                    <%= link_to("Change status", user_path(current_user, "user[wrestler_id]" => wrestler.id), :method => :patch, :confirm => "Sure?") %>
+                    <%= link_to("SELECT WRESTLER", user_path(current_user, "user[wrestler_id]" => wrestler.id), :method => :patch, :confirm => "Sure?") %>
                   <%elsif wrestler.user.id == current_user.id%>
                     <span class="unavailable">
                       YOUR CURRENT SELECTION
