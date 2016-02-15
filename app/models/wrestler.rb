@@ -1,6 +1,6 @@
 class Wrestler < ActiveRecord::Base
   has_one :user
-  default_scope -> { order(id: :asc) }
+  default_scope -> { order(name: :asc) }
   mount_uploader :image, PictureUploader
   validates :name, presence: true
   validates :image, presence: true

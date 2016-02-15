@@ -27,6 +27,7 @@ class UsersController < ApplicationController
       #Autopost that they signed up
       @autopostcontent = @user.name + " has entered the ring! #ROYALRUMBLE #JINNYXXXI"
       Micropost.create(:user_id => @user.id, :content => @autopostcontent, :autopost => true)
+      posttweet(@autopostcontent)
       #login, set flash, show their profile page
       log_in @user
       flashmsg = "<h3>Your Profile has been Created!</h3><br />"
@@ -40,12 +41,25 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @oldwrestler = @user.wrestler_id
+
     if @user.update_attributes(user_params)
-      posttweet("testing the new module - take 2")
-
-
+      if (@user.wrestler_id != @oldwrestler)
+        if @oldwrestler != nil
+          #Autopost that they are available
+          @autopostcontent = @user.name + " has released " + Wrestler.find(@oldwrestler).name + ", and they are now available for selection. #JINNYXXXI"
+          Micropost.create(:user_id => @user.id, :content => @autopostcontent, :autopost => true)
+          posttweet(@autopostcontent)
+        end
+        if @user.wrestler_id != nil
+          #Autopost that they are selected
+          @autopostcontent = @user.name + " is entering the ring as " + Wrestler.find(@user.wrestler_id).name + ", and they are no longer available for selection. #JINNYXXXI"
+          Micropost.create(:user_id => @user.id, :content => @autopostcontent, :autopost => true)
+          posttweet(@autopostcontent)
+        end
+      end
       flashmsg = "<h3>Your Profile has been Updated!</h3><br />"
-      flashmsg += "<h4>This pleases the hulk almost as much as being a champion does.</h4>"
+      flashmsg += "<hkrl4>This pleases the hulk almost as much as being a champion does.</h4>"
       flash[:success] = flashmsg
       redirect_to @user
     else

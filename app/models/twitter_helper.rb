@@ -12,8 +12,4 @@ module TwitterHelper
     @@client.update(val)
   end
 
-  def posttweetwithimage(id, con, pic)
-    @fullpath = 'public/uploads/micropost/picture/' + id.to_s + '/' + pic.filename
-    @@client.update_with_media(con, File.new(@fullpath ))
-  end
 end

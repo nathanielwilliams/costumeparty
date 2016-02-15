@@ -2,15 +2,26 @@
     <div class="row">
       <aside class="col-md-3" style="text-align:center">
         <section class="user_info">
-          <%= image_tag("default_avatar.png", alt: "No Wrestler selected", size: "100") %>
+          <% if user.wrestler == nil %>
+            <%= image_tag("default_avatar.png", alt: "No Wrestler selected", size: "125") %>
+          <% else %>
+            <%= image_tag(user.wrestler.image, alt: user.wrestler.name, size: "125") %>
+          <% end %>
         </section>
       </aside>
       <div class="col-md-6">
         <%= link_to user.name, user %>
         <br />
-        NO WRESTLER SELECTED
+        <% if user.wrestler == nil %>
+          NO WRESTLER SELECTED
+        <% else %>
+          <%= user.wrestler.name.upcase %>
+          <br/>
+          <%= user.wrestler.slogan%>
+        <% end %>
         <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
+            <br/>
+            <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
       </div>

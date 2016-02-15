@@ -1,7 +1,7 @@
 <%= form_for(@micropost, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new message..." %>
+    <%= f.text_area :content, placeholder: "Compose new message (up to 250 chars)" %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
   <span class="picture">
@@ -12,7 +12,7 @@
   <script type="text/javascript">
     $('#micropost_picture').bind('change', function() {
       var size_in_megabytes = this.files[0].size/1024/1024;
-      if (size_in_megabytes > 5) {
+      if (size_in_megabytes > 3) {
         alert('Maximum file size is 3MB. The Hulkster only has so much space!.');
       }
     });

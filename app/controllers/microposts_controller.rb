@@ -1,16 +1,12 @@
 class MicropostsController < ApplicationController
-  include TwitterHelper
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
   before_action :not_autopost,   only:  :destroy
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
-      if @micropost.picture != nil
-        posttweetwithimage(@micropost.id, current_user.name + ' says: ' + @micropost.content, @micropost.picture)
-      else
-        posttweet(current_user.name + ' says: ' + @micropost.content)
-      end
+      @successmsg = "<h3>Nice post, brother!</h3><br />"
+      @successmsg = @successmsg + "<h4>Now hit the gym, there ain't much time left to get ring ready!</h4><br />"
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
@@ -30,6 +26,8 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
+    @successmsg = "<h3>That post is toast, brother!</h3><br />"
+    @successmsg = @successmsg + "<h4>The Hulkster gave it an atomic leg drop for ya!</h4><br />"
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || root_url
   end

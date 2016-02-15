@@ -5,10 +5,26 @@
     <div class="row">
       <aside class="col-md-3" style="text-align:center">
         <section class="user_info">
-        <%= image_tag("default_avatar.png", alt: "No Wrestler selected") %>
+          <% if @user.wrestler == nil %>
+            <%= image_tag("default_avatar.png", alt: "No Wrestler selected", size: "200") %>
+          <% else %>
+            <%= image_tag(@user.wrestler.image, alt: @user.wrestler.name, size: "200") %>
+          <% end %>
         <br />
         <div style="text-align:center">
-          NO WRESTLER SELECTED
+          <% if @user.wrestler == nil %>
+            NO WRESTLER SELECTED
+            <%if @user == current_user%>
+              <br/>
+              <%= link_to "SELECT YOUR WRESTLER", wrestlers_path%>
+            <%end%>
+          <% else %>
+            <%= @user.wrestler.name.upcase %>
+            <%if @user == current_user%>
+              <br/>
+              <%= link_to "CHANGE YOUR WRESTLER", wrestlers_path%>
+            <%end%>
+          <% end %>
         </div>
       </section>
       </aside>

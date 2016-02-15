@@ -7,7 +7,9 @@
         <div style="text-align:center">
           NO WRESTLER SELECTED
           <br />
-          <%= link_to "SELECT YOUR WRESTLER", wrestlers_path%>
+          <%if @user == current_user%>
+            <%= link_to "SELECT YOUR WRESTLER", wrestlers_path%>
+          <%end%>
         </div>
       <% else %>
       <%= image_tag(@wrestler.image, alt: @wrestler.name, size: "200") %>
@@ -15,7 +17,9 @@
       <div style="text-align:center">
         <%=@wrestler.name%>
         <br />
-        <%= link_to "CHANGE YOUR WRESTLER", wrestlers_path%>
+        <%if @user == current_user%>
+          <%= link_to "CHANGE YOUR WRESTLER", wrestlers_path%>
+        <%end%>
       </div>
       <% end %>
   </section>
