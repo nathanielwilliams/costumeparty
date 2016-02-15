@@ -1,0 +1,2 @@
+      invoke  active_record
+   identical    db/migrate/20160210233310_add_boolean_autopost_to_microposts.rb

@@ -68,6 +68,12 @@ h4{
   margin-bottom: 0px;
 }
 
+h5{
+  font-size: 1.5em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -276,6 +282,46 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+/* wrestlers */
+
+.wrestlers {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+/*misc - clean this up */
+.unavailable{
+  color: $gray-light;
+  display: block;
+  font-style: italic;
 }
 
 /* bootstrap overides */

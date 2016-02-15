@@ -1,0 +1,10 @@
+<% provide(:title, 'Hall of Champions') %>
+<h1>ARE YOU READY TO RUMBLE?</h1>
+<h2>{select your wrestler}</h2>
+  <% if @allwrestlers.any? %>
+    <ul class="users">
+      <%= render @allwrestlers %>
+    </ul>
+    <%= will_paginate @allwrestlers %>
+  <% end %>
+<br />

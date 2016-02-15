@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include TwitterHelper
   before_action :logged_in_user, only: [:show, :edit, :update, :index, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
@@ -10,6 +11,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @wrestler = nil
+    if (@user.wrestler_id != nil)
+      @wrestler = Wrestler.find(@user.wrestler_id)
+    end
   end
 
   def new
@@ -21,7 +26,7 @@ class UsersController < ApplicationController
     if @user.save
       #Autopost that they signed up
       @autopostcontent = @user.name + " has entered the ring! #ROYALRUMBLE #JINNYXXXI"
-      Micropost.create(:user_id => @user.id, :content => @autopostcontent)
+      Micropost.create(:user_id => @user.id, :content => @autopostcontent, :autopost => true)
       #login, set flash, show their profile page
       log_in @user
       flashmsg = "<h3>Your Profile has been Created!</h3><br />"
@@ -36,6 +41,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
+      posttweet("testing the new module - take 2")
+
+
       flashmsg = "<h3>Your Profile has been Updated!</h3><br />"
       flashmsg += "<h4>This pleases the hulk almost as much as being a champion does.</h4>"
       flash[:success] = flashmsg
@@ -59,7 +67,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :wrestler_id)
     end
 
     # Before filters

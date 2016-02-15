@@ -1,9 +1,16 @@
 class MicropostsController < ApplicationController
+  include TwitterHelper
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
+  before_action :not_autopost,   only:  :destroy
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
+      if @micropost.picture != nil
+        posttweetwithimage(@micropost.id, current_user.name + ' says: ' + @micropost.content, @micropost.picture)
+      else
+        posttweet(current_user.name + ' says: ' + @micropost.content)
+      end
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
@@ -36,5 +43,13 @@ class MicropostsController < ApplicationController
     def correct_user
       @micropost = current_user.microposts.find_by(id: params[:id])
       redirect_to root_url if @micropost.nil?
+    end
+
+    #users can't delete auto generate posts created for them.  Automatic statuses.
+    def not_autopost
+      @micropost = current_user.microposts.find_by(id: params[:id])
+      if @micropost.autopost == true
+        redirect_to root_url
+      end
     end
 end

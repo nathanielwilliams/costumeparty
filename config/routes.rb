@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   get 'users/new'
 
-  get 'users/new'
 
   root 'static_pages#home'
   get 'contact' => 'static_pages#contact'
@@ -18,7 +17,10 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+
   resources :users
+
+  resources :wrestlers
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
 end

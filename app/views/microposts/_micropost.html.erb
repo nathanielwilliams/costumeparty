@@ -1,5 +1,13 @@
 <li id="micropost-<%= micropost.id %>">
-  <%= link_to image_tag("default_avatar.png", alt: "No Wrestler selected", size: "50", class: "gravatar"), micropost.user %>
+
+  <% if micropost.user.wrestler_id != nil
+      @wrestler = Wrestler.find(micropost.user.wrestler_id)%>
+      <%= link_to image_tag(@wrestler.image, alt: @wrestler.name, size: "50", class: "gravatar"), micropost.user %>
+    <%else%>
+      <%= link_to image_tag("default_avatar.png", alt: "No Wrestler selected", size: "50", class: "gravatar"), micropost.user %>
+    <%end%>
+
+
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
     <%= micropost.content %>
@@ -7,7 +15,8 @@
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-    <% if current_user?(micropost.user) %>
+
+    <% if current_user?(micropost.user) && micropost.autopost == false%>
       <%= link_to "delete", micropost, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>

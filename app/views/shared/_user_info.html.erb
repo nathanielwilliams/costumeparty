@@ -1,4 +1,9 @@
-<%= link_to image_tag("default_avatar.png", alt: "No Wrestler selected", size: "50", class: "gravatar"), current_user %>
+<% if current_user.wrestler_id != nil
+    @wrestler = Wrestler.find(current_user.wrestler_id)%>
+    <%= link_to image_tag(@wrestler.image, alt: @wrestler.name, size: "50", class: "gravatar"), current_user %>
+  <%else%>
+    <%= link_to image_tag("default_avatar.png", alt: "No Wrestler selected", size: "50", class: "gravatar"), current_user %>
+  <%end%>
 <h1><%= current_user.name %></h1>
 <span>I've made <%= pluralize(current_user.microposts.count, "Post") %></span>
 <span><%= link_to "view my profile", current_user %></span>

@@ -1,0 +1,27 @@
+    <li>
+      <div class="row">
+          <div class="col-sm-16">
+              <div class="col-sm-2 pull-left">
+                  <%= image_tag(wrestler.image.url, alt: wrestler.name, size: "100", class: "gravatar")%>
+              </div>
+              <div class="col-sm-14">
+                <h3><%= wrestler.name %></h3>
+
+                <h5><%= wrestler.slogan %></h5>
+
+
+                  <%if wrestler.user.nil?%>
+                    <%= link_to("Change status", user_path(current_user, "user[wrestler_id]" => wrestler.id), :method => :patch, :confirm => "Sure?") %>
+                  <%elsif wrestler.user.id == current_user.id%>
+                    <span class="unavailable">
+                      YOUR CURRENT SELECTION
+                    </span>
+                  <% else %>
+                    <span class="unavailable">
+                      TAKEN | <%=wrestler.user.name%> beat you to the punch, Brother
+                    </span>
+                  <%end%>
+              </div>
+          </div>
+      </div>
+</li>
