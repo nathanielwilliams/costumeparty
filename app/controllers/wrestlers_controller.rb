@@ -9,13 +9,17 @@ class WrestlersController < ApplicationController
     @wrestler = Wrestler.find(params[:id])
   end
 
+  def new
+    @wrestler = Wrestler.new
+  end
+
   def create
     @wrestler = Wrestler.new(user_params)
     if @wrestler.save
 
       flashmsg = "<h3>Wrestler Created!</h3><br />"
       flash[:success] = flashmsg
-      redirect_to @wrestler
+      redirect_to new_wrestler_path
     else
       render 'new'
     end
