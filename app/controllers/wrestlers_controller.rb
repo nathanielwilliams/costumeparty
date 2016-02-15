@@ -2,7 +2,7 @@ class WrestlersController < ApplicationController
   before_action :logged_in_user, only: [:create, :update, :edit, :index, :destroy]
   before_action :admin_user,     only: [:destroy]
   def index
-    @allwrestlers = Wrestler.includes(:user).paginate(:page => params[:page], :per_page => 5)
+    @allwrestlers = Wrestler.includes(:user).paginate(:page => params[:page], :per_page => 20)
   end
 
   def Show

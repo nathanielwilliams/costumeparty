@@ -7,7 +7,7 @@ class MicropostsController < ApplicationController
     if @micropost.save
       @successmsg = "<h3>Nice post, brother!</h3><br />"
       @successmsg = @successmsg + "<h4>Now hit the gym, there ain't much time left to get ring ready!</h4><br />"
-      flash[:success] = "Micropost created!"
+      flash[:success] = @successmsg
       redirect_to root_url
     else
       #break from the error partial
@@ -28,7 +28,7 @@ class MicropostsController < ApplicationController
     @micropost.destroy
     @successmsg = "<h3>That post is toast, brother!</h3><br />"
     @successmsg = @successmsg + "<h4>The Hulkster gave it an atomic leg drop for ya!</h4><br />"
-    flash[:success] = "Micropost deleted"
+    flash[:success] = @successmsg
     redirect_to request.referrer || root_url
   end
 
