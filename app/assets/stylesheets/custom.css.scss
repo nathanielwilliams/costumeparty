@@ -373,3 +373,10 @@ ol li:nth-child(2n+0):before {
   margin-left: 0px;
   margin-right: 0px;
 }
+
+/* Static Pages */
+.surprise-hogan{
+    background-image: asset-data-url("surprisehogan.jpg");
+    background-repeat: no-repeat;
+    background-position: center top; 
+}
